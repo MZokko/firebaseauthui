@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth } from '../../firebase';
+import { auth, uiConfig } from '../../firebase';
+import firebase from "firebase"
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 
 const AuthContext = React.createContext();
 
@@ -34,6 +36,8 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   }
 
+ var uiFireBase = <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth}/>
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -51,11 +55,15 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
+    uiFireBase,
+    
   };
 
   return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
+   
+      <AuthContext.Provider value={value}>
+        {!loading && children } 
+      </AuthContext.Provider>
+   
   );
 }

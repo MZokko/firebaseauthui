@@ -6,9 +6,10 @@ import { Link, useHistory } from 'react-router-dom';
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, currentUser , uiFireBase} = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(false)
   const history = useHistory();
 
   async function handleSubmit(e) {
@@ -25,6 +26,7 @@ function Login() {
     }
     setLoading(false);
   }
+
 
   return (
     <>
@@ -46,6 +48,10 @@ function Login() {
             <Button disabled={loading} className='w-100' type='submit'>
               Log in
             </Button>
+            <div id="firebaseui-auth-container">
+                {uiFireBase}
+            </div>
+
           </Form>
           <div className='w-100 text-center mt-3'>
             <Link to='/forgotPassword'>Forgot Password</Link>
@@ -54,6 +60,10 @@ function Login() {
       </Card>
       <div className=' w-100 text-center mt-2'>
         No account ? <Link to='/signup'>Sign Up</Link>
+      </div>
+
+      <div>
+          {!currentUser  ? <div>sign in</div> : <div>not sign in</div>}
       </div>
     </>
   );

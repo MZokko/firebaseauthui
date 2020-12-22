@@ -4,6 +4,7 @@ import 'firebase/auth';
 
 export const uiConfig = {
   signInFlow: "popup",
+  signInSuccessUrl: '/',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -12,7 +13,7 @@ export const uiConfig = {
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
   callbacks: {
-    signInSuccessWithAuthResult: () => false
+    signInSuccessWithAuthResult: function(authResult, redirectUrl) {return true}
   }
 }
 

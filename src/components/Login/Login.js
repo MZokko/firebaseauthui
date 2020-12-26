@@ -9,7 +9,6 @@ function Login() {
   const { login, currentUser , uiFireBase} = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isSignIn, setIsSignIn] = useState(false)
   const history = useHistory();
 
   async function handleSubmit(e) {

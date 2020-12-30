@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import UpdateProfile from './components/UpdateProfile/UpdateProfile';
+import TimeSheetTemplate from './components/TimeSheetTemplate/TimeSheetTemplate'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Switch>
               <PrivateRoute exact path='/' component={Dashboard} />
               <PrivateRoute  path='/updateProfile' component={UpdateProfile} />
+              <Route path='/timeSheetTemplate' component={TimeSheetTemplate} />
               <Route path='/signup' component={SignUp} />
               <Route path='/login' component={Login} />
               <Route path='/forgotPassword' component={ForgotPassword} />
@@ -32,5 +34,6 @@ function App() {
     </Container>
   );
 }
+
 
 export default App;

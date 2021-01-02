@@ -2,25 +2,30 @@ import React, { useState, useRef } from 'react';
 import Popup from 'reactjs-popup';
 import { Form, Button } from 'react-bootstrap';
 import SignatureCanvas from 'react-signature-canvas';
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 import './TimeSheetTemplate.css';
 
 function TimeSheetTemplate() {
   const signedCanvas = useRef({});
+  const startTime = useRef();
+  const finishTime = useRef();
+  const day = useRef();
+  const companyName = useRef();
+  const siteAdress = useRef();
+  const foremanName = useRef();
+  const lunchBreak = useRef();
+
   const [imgUrl, setImgUrl] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+
   const clearSign = () => {
     signedCanvas.current.clear();
   };
   const saveSign = () => {
     setImgUrl(signedCanvas.current.getTrimmedCanvas().toDataURL('image/png'));
   };
-  const foremanName = useRef();
-  const lunchBreak = useRef();
-  const date = useRef();
-  const startTime = useRef();
-  const finishTime = useRef();
-  const day = useRef();
-  const companyName = useRef();
-  const siteAdress = useRef();
 
   const arrayWeek = [
     'monday',
@@ -39,12 +44,17 @@ function TimeSheetTemplate() {
         <Form.Control as='select' ref={day}>
           <option>----------------</option>
           {arrayWeek.map((el) => {
-            return (
-              <option key={el}>{el}</option>);
+            return <option key={el}>{el}</option>;
           })}
         </Form.Control>
+
         <Form.Label>Date</Form.Label>
-        <Form.Control ref={date} placeholder='dd/mm/yyyy'></Form.Control>
+        <div>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+        </div>
       </Form.Group>
 
       {/* work info */}
@@ -109,7 +119,13 @@ function TimeSheetTemplate() {
 
       <Button
         onClick={() => {
-          console.log(day.current.value);
+          console.log(
+            'day :' + day.current.value,
+            'start date:' + startDate,
+            'foreman name' + foremanName.current.value,
+            'company name' + companyName.current.value,
+            'site adress' + siteAdress.current.value
+          );
         }}
       >
         Send

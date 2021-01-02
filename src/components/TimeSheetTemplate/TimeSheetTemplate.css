@@ -10,3 +10,36 @@
   opacity: 30%;
   width: 100%;
 }
+
+.form {
+  margin-top: 1rem;
+  border-radius: 3px;
+}
+
+.formGroupDate {
+  padding: 10px;
+  -webkit-box-shadow: 5px 5px 8px -1px #aaaaaa;
+  box-shadow: 5px 5px 8px -1px #aaaaaa;
+  border-radius: 5px;
+}
+
+.formGroupWorkInfo {
+  padding: 10px;
+  -webkit-box-shadow: 5px 5px 8px -1px #aaaaaa;
+  box-shadow: 5px 5px 8px -1px #aaaaaa;
+  border-radius: 5px;
+}
+
+.formGroupTime {
+  padding: 10px;
+  -webkit-box-shadow: 5px 5px 8px -1px #aaaaaa;
+  box-shadow: 5px 5px 8px -1px #aaaaaa;
+  border-radius: 5px;
+}
+
+.formGroupSignName {
+  padding: 10px;
+  -webkit-box-shadow: 5px 5px 8px -1px #aaaaaa;
+  box-shadow: 5px 5px 8px -1px #aaaaaa;
+  border-radius: 5px;
+}

@@ -13,55 +13,64 @@ function TimeSheetTemplate() {
   const saveSign = () => {
     setImgUrl(signedCanvas.current.getTrimmedCanvas().toDataURL('image/png'));
   };
+  const foremanName = useRef();
+  const lunchBreak = useRef();
+  const date = useRef();
+  const startTime = useRef();
+  const finishTime = useRef();
+  const day = useRef();
+  const companyName = useRef();
+  const siteAdress = useRef();
+
+  const arrayWeek = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+  ];
 
   return (
     <>
-      <Form>
-        {/* date */}
-        <Form.Group></Form.Group>
+      {/* date */}
+      <Form.Group className='formGroupDate'>
+        <Form.Label>Day</Form.Label>
+        <Form.Control as='select' ref={day}>
+          <option>----------------</option>
+          {arrayWeek.map((el) => {
+            return (
+              <option key={el}>{el}</option>);
+          })}
+        </Form.Control>
+        <Form.Label>Date</Form.Label>
+        <Form.Control ref={date} placeholder='dd/mm/yyyy'></Form.Control>
+      </Form.Group>
 
-        {/* work info */}
-        <Form.Group>
-          <Form.Label>Company name</Form.Label>
-          <Form.Control type='select'></Form.Control>
-          <Form.Label>Site Adress</Form.Label>
-          <Form.Control></Form.Control>
-        </Form.Group>
+      {/* work info */}
+      <Form.Group className='formGroupWorkInfo'>
+        <Form.Label>Company name</Form.Label>
+        <Form.Control ref={companyName}></Form.Control>
+        <Form.Label>Site Adress</Form.Label>
+        <Form.Control ref={siteAdress}></Form.Control>
+      </Form.Group>
 
-        {/* time */}
-        <Form.Group>
-          <Form.Label>Starting time</Form.Label>
-          <Form.Control></Form.Control>
-          <Form.Label>Finishing time</Form.Label>
-          <Form.Control></Form.Control>
-        </Form.Group>
+      {/* time */}
+      <Form.Group className='formGroupTime'>
+        <Form.Label>Starting time</Form.Label>
+        <Form.Control ref={startTime} placeholder='7.00 am'></Form.Control>
+        <Form.Label>Finishing time</Form.Label>
+        <Form.Control ref={finishTime} placeholder='3.00 pm'></Form.Control>
+        <Form.Label>Lunch break</Form.Label>
+        <Form.Control ref={lunchBreak} placeholder='30min'></Form.Control>
+      </Form.Group>
 
-        {/* forman sign */}
-        <Form.Group>
-          <Form.Label>Foreman name</Form.Label>
-          <Form.Control></Form.Control>
+      {/* forman sign */}
+      <Form.Group className='formGroupSignName'>
+        <Form.Label>Foreman name</Form.Label>
+        <Form.Control ref={foremanName}></Form.Control>
+      </Form.Group>
 
-          {/* <Popup
-            modal
-            position='right center'
-            trigger={<button>Signature Foreman</button>}
-            closeOnDocumentClick={false}
-          >
-            {(close) => (
-              <>
-                <div className='backdrop'>
-                  <SignatureCanvas
-                    canvasProps={{ className: 'signatureCanvas' }}
-                  />
-                </div>
-                {console.log(SignatureCanvasModalShow)}
-              </>
-            )}
-          </Popup> */}
-
-          <Button>Submit</Button>
-        </Form.Group>
-      </Form>
       <Popup
         modal
         position='right center'
@@ -97,6 +106,14 @@ function TimeSheetTemplate() {
           }}
         />
       ) : null}
+
+      <Button
+        onClick={() => {
+          console.log(day.current.value);
+        }}
+      >
+        Send
+      </Button>
     </>
   );
 }

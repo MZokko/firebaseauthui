@@ -29,7 +29,7 @@ function Login() {
 
   return (
     <>
-      <Card>
+      <Card >
         <Card.Body>
           <h5 className='text-center mb-4'>Log in</h5>
           {error && <Alert variant='danger'>{error}</Alert>}
@@ -52,17 +52,17 @@ function Login() {
             </div>
 
           </Form>
-          <div className='w-100 text-center mt-3'>
+          <div className='text-center mt-3'>
             <Link to='/forgotPassword'>Forgot Password</Link>
           </div>
         </Card.Body>
       </Card>
-      <div className=' w-100 text-center mt-2'>
+      <div className='text-center mt-2'>
         No account ? <Link to='/signup'>Sign Up</Link>
       </div>
 
       <div>
-          {!currentUser  ? <div>sign in</div> : <div>not sign in</div>}
+          {!currentUser  ?  <div>sign in</div>:<div>not sign in</div> }
       </div>
     </>
   );
